@@ -1,0 +1,19 @@
+{
+  "logLevel": "debug",
+  "mongodb": {
+    "uri": "mongodb://localhost:27017/sunrise_1",
+    "options": {
+      "useMongoClient": true,
+      "autoIndex": false,
+      "reconnectTries": 15,
+      "reconnectInterval": 500,
+      "poolSize": 50,
+      "keepAlive": 120
+    },
+    "schemaOpts": {
+      "minimize": false,
+      "versionKey": false,
+      "timestamps": true
+    }
+  }
+}

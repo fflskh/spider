@@ -1,0 +1,40 @@
+{
+  "appName": "SunRise",
+  "port": 3001,
+  "logLevel": "info",
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 6379,
+    "auth": "",
+    "db": 0,
+    "options": {
+    }
+  },
+  "kue": {
+    "prefix": "q",
+    "priority": "high",
+    "attempts": 5,
+    "backoff": {
+      "enable": true,
+      "delay": 30000,
+      "type":"fixed"
+    },
+    "concurrency": 10
+  },
+  "mongodb": {
+    "uri": "mongodb://sunrise:sunrise_123456@localhost:27017/sunrise",
+    "options": {
+      "useMongoClient": true,
+      "autoIndex": false,
+      "reconnectTries": 15,
+      "reconnectInterval": 500,
+      "poolSize": 50,
+      "keepAlive": 120
+    },
+    "schemaOpts": {
+      "minimize": false,
+      "versionKey": false,
+      "timestamps": true
+    }
+  }
+}
