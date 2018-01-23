@@ -2,6 +2,7 @@
   "appName": "SunRise",
   "port": 3001,
   "logLevel": "info",
+  "logDebug": true,
   "redis": {
     "host": "127.0.0.1",
     "port": 6379,
@@ -22,7 +23,7 @@
     "concurrency": 10
   },
   "mongodb": {
-    "uri": "mongodb://sunrise:sunrise_123456@localhost:27017/sunrise",
+    "uri": "mongodb://sunrise_new:sunrise_123456@localhost:27017/sunrise_new",
     "options": {
       "useMongoClient": true,
       "autoIndex": false,
