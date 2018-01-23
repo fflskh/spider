@@ -12,8 +12,8 @@ const briefSchema = new Schema({
     onProduce: {type: Boolean, desc: '是否在生产'},
     imagesUrl: {type: String, desc: '图片链接'},
     configUrl: {type: String, desc: '配置信息链接'},
-    hasImageCrawled: {type: Boolean, desc: '是否已经爬取该brief信息对应的图片'},
-    hasConfigCrawled: {type: Boolean, desc: '是否已经爬取该brief信息对应的配置'}
+    hasImageCrawled: {type: Boolean, defaultValue: false, desc: '是否已经爬取该brief信息对应的图片'},
+    hasConfigCrawled: {type: Boolean, defaultValue: false, desc: '是否已经爬取该brief信息对应的配置'}
 }, {
     collection: 'seriesBriefs', //默认取model name的负数为collection name，该选项用于手动指定collection name
     minimize: _config.get('mongodb.schemaOpts.minimize'), //默认不会将空对象"{}"写入db。置为false，将空对象写入db
