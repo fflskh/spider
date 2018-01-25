@@ -134,7 +134,6 @@ class SeriesConfig extends Base {
                 }
             });
         } catch(error) {
-            console.error(error);
             throw error;
         }
     }
