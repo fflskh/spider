@@ -5,6 +5,7 @@ const Schema = require('mongoose').Schema;
 
 const basicSchema = new Schema({
     seriesBriefId: {type: String, desc: '系列ID'},
+    specId: {type: Number, desc: 'seriesBriefs.configUrl对应的spec id，用于数据爬取'},
     details: {type: Schema.Types.Mixed, desc: '详细配置信息'}
 }, {
     collection: 'seriesConfigs', //默认取model name的负数为collection name，该选项用于手动指定collection name

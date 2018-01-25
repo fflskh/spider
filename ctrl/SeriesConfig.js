@@ -24,6 +24,15 @@ class SeriesConfig extends Base {
         }
 
         try {
+            let seriesBriefEntity = await self.pipeline.findOneDoc({
+                where: {
+                    _id: brief._id
+                }
+            });
+            if(seriesBriefEntity.hasConfigCrawled) {
+                return null;
+            }
+
             //直接通过接口爬取，不通过页面爬取
             let carxid;
             try {
@@ -69,6 +78,19 @@ class SeriesConfig extends Base {
                     let reg = new RegExp(`.*\/${specId}$`);
                     console.log('reg exp : ', reg);
 
+                    //如果seriesConfig已经存在了，就不用插入了
+                    let seriesConfig = await self.pipeline.findOneDoc({
+                        modelName: 'SeriesConfig',
+                        where: {
+                            specId: specId
+                        }
+                    });
+
+                    if(seriesConfig) {
+                        return null;
+                    }
+
+                    //通过specId反查seriesBrief数据，确保seriesBrief和seriesConfig能够关联起来
                     let seriesBrief = await self.pipeline.findOneDoc({
                         modelName: 'SeriesBrief',
                         where: {
@@ -77,13 +99,13 @@ class SeriesConfig extends Base {
                             }
                         }
                     });
-
                     if(!seriesBrief) {
                         console.log(`the regexp ${reg} has no result.`);
                         return null;
                     }
 
-                    configEntity.seriesBriefId = seriesBrief.id;
+                    configEntity.seriesBriefId = seriesBrief._id;
+                    configEntity.specId = specId;
                     configEntity.details = {};
 
                     for(let item of config.items) {
