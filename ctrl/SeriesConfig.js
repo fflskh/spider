@@ -25,6 +25,7 @@ class SeriesConfig extends Base {
 
         try {
             let seriesBriefEntity = await self.pipeline.findOneDoc({
+                modelName: 'SeriesBrief',
                 where: {
                     _id: brief._id
                 }
